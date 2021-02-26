@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import Alert from '../components/Alert';
 import Form from '../components/Form';
+import Loader from '../components/Loader';
 import Notes from '../components/Notes';
+import { FirebaseContext } from '../context/firebase/firebaseContext';
 
 const Home = () => {
-  const notes = new Array(3)
-    .fill('')
-    .map((_, i) => ({ id: i, title: `Note ${i + 1}` }));
+  const {
+    notes,
+    loading,
+    fetchNotes,
+    removeNote,
+  } = useContext(FirebaseContext);
+
+  useEffect(() => { fetchNotes(); }, []);
 
   return (
     <>
       <Alert />
       <Form />
       <hr />
-      <Notes notes={notes} />
+      {loading
+        ? <Loader />
+        : <Notes notes={notes} onRemoveNote={removeNote} />}
     </>
   );
 };

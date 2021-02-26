@@ -1,25 +1,32 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext, useEffect } from 'react';
+import { AlertContext } from '../context/alert/alertContext';
 
-const Alert = ({ alert }) => (
-  alert ? (
-    <div className={`alert alert-${alert.type ?? 'warning'} alert-dismissible fade show`} role="alert">
-      <strong>Warning!</strong>
-      {' '}
-      {alert.text}
-      You should check in on some of those fields below.
-      <button type="button" className="close" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-  ) : null
-);
+const Alert = () => {
+  const { alert, hide } = useContext(AlertContext);
 
-Alert.propTypes = {
-  alert: PropTypes.shape({
-    type: PropTypes.string,
-    text: PropTypes.string,
-  }).isRequired,
+  useEffect(() => {
+    if (alert.visible) {
+      setTimeout(() => {
+        hide();
+      }, 5000);
+    }
+  }, [alert.visible]);
+
+  return (
+    alert.visible ? (
+      <div className={`alert alert-${alert.type ?? 'warning'} alert-dismissible fade show`} role="alert">
+        <strong style={{ textTransform: 'uppercase' }}>
+          {alert.type}
+          !
+        </strong>
+        {' '}
+        {alert.text}
+        <button onClick={hide} type="button" className="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    ) : null
+  );
 };
 
 export default Alert;
