@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { AlertContext } from '../context/alert/alertContext';
 
 const Notes = ({ notes, onRemoveNote }) => {
@@ -14,17 +15,30 @@ const Notes = ({ notes, onRemoveNote }) => {
   };
 
   return (
-    <ul className="list-group">
-      {notes.map(({ title, id, date }) => (
-        <li className="list-group-item note" key={id}>
-          <div>
-            <strong className="noteTitle">{title}</strong>
-            <small>{date}</small>
-          </div>
-          <button onClick={removeNote(id)} type="button" className="btn btn-outline-danger btn-sm">&times;</button>
-        </li>
+    <TransitionGroup component="ul" className="list-group">
+      {notes.map(({
+        title,
+        id,
+        date,
+        time,
+      }) => (
+        <CSSTransition
+          key={id}
+          classNames="note"
+          timeout={800}
+        >
+          <li className="list-group-item note" key={id}>
+            <div>
+              <strong className="noteTitle">{title}</strong>
+              <small>{date}</small>
+              &nbsp;
+              <small>{time}</small>
+            </div>
+            <button onClick={removeNote(id)} type="button" className="btn btn-outline-danger btn-sm">&times;</button>
+          </li>
+        </CSSTransition>
       ))}
-    </ul>
+    </TransitionGroup>
   );
 };
 

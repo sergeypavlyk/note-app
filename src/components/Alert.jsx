@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { CSSTransition } from 'react-transition-group';
 import { AlertContext } from '../context/alert/alertContext';
 
 const Alert = () => {
@@ -13,7 +14,16 @@ const Alert = () => {
   }, [alert.visible]);
 
   return (
-    alert.visible ? (
+    <CSSTransition
+      in={alert.visible}
+      timeout={{
+        enter: 500,
+        exit: 350,
+      }}
+      classNames="alert"
+      mountOnEnter
+      unmountOnExit
+    >
       <div className={`alert alert-${alert.type ?? 'warning'} alert-dismissible fade show`} role="alert">
         <strong style={{ textTransform: 'uppercase' }}>
           {alert.type}
@@ -25,7 +35,7 @@ const Alert = () => {
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-    ) : null
+    </CSSTransition>
   );
 };
 
