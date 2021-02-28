@@ -16,7 +16,6 @@ const links = [{
 const Navbar = () => (
   <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
     <div className="navbar-brand">Note App</div>
-
     <ul className="navbar-nav">
       {links.map(({
         name,

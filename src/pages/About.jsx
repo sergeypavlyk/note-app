@@ -13,7 +13,6 @@ const About = () => (
       <a className="btn btn-primary btn-lg" href="/" role="button">Try to add Note</a>
     </p>
   </div>
-
 );
 
 export default About;

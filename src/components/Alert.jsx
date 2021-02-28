@@ -6,11 +6,7 @@ const Alert = () => {
   const { alert, hide } = useContext(AlertContext);
 
   useEffect(() => {
-    if (alert.visible) {
-      setTimeout(() => {
-        hide();
-      }, 5000);
-    }
+    if (alert.visible) setTimeout(() => hide(), 5000);
   }, [alert.visible]);
 
   return (

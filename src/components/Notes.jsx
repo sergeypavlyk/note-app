@@ -9,9 +9,7 @@ const Notes = ({ notes, onRemoveNote }) => {
   const removeNote = (id) => () => {
     onRemoveNote(id);
     show('Your note has been successfully deleted', 'success');
-    setTimeout(() => {
-      hide();
-    }, 5000);
+    setTimeout(() => hide(), 5000);
   };
 
   return (
