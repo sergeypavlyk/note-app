@@ -2,15 +2,15 @@ import React from 'react';
 
 const About = () => (
   <div className="jumbotron">
-    <h1 className="display-4">Hello, world!</h1>
-    <p className="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-    <hr className="my-4" />
-    <p>
-      It uses utility classes for typography and spacing
-      to space content out within the larger container.
-    </p>
+    <h1 className="display-4">Hi there!</h1>
     <p className="lead">
-      <a className="btn btn-primary btn-lg" href="/" role="button">Learn more</a>
+      You can now try to add your personal note on the Home page interface.
+      Just enter whatever You want in the input box and click enter. Congrats!
+      <span>{'\u2728'}</span>
+    </p>
+    <hr className="my-4" />
+    <p className="lead">
+      <a className="btn btn-primary btn-lg" href="/" role="button">Try to add Note</a>
     </p>
   </div>
 

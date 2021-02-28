@@ -27,7 +27,7 @@ const Notes = ({ notes, onRemoveNote }) => {
           classNames="note"
           timeout={800}
         >
-          <li className="list-group-item note" key={id}>
+          <li className="list-group-item note">
             <div>
               <strong className="noteTitle">{title}</strong>
               <small>{date}</small>
